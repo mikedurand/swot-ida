@@ -1,7 +1,6 @@
 clear all
 
 uselib('SWOTQAlg')
-
 ShowFigs=true;
 RunBjerklie=false;
 RunMetroMan=true;

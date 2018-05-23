@@ -73,8 +73,9 @@ v=(Prior.covQbar*Prior.meanQbar)^2;
 
 N=1E4; %chain length
 
-A0u=allA0min; %arbitrary -- factor should not matter
-A0u(A0u==0)=1; 
+A0u=0.27*(Prior.meanQbar^.39)*7.2*(Prior.meanQbar^0.5); %Moody & Troutman A0
+A0u(A0u < allA0min,1) = allA0min(A0u < allA0min)' + 1; %Make sure that no dA will push A negative. Adjust A0 to maximum negative dA + 1 if necessary.
+
 nau=meanna; %ok as long as all r
 x1u=meanx1;
 
@@ -106,7 +107,7 @@ for j=1:DAll.nR,
         stop=1;
     end
             
-    A0u=3*thetaAllA0(j,1); %the initial value is the minimum 
+    A0u=thetaAllA0(j,1); %the initial value is the minimum 
     nau=thetana(j,1);
     x1u=thetax1(j,1);
     
