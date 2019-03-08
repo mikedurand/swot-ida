@@ -1,7 +1,6 @@
 % this script runs a single experiment, taking Run Directory as input
-% April 2015
 
-function RunExp(RunDir,ShowFigs)
+function RunExp(RunDir,ShowFigs,Laterals)
 
 % RunDir='.';
 
@@ -16,7 +15,14 @@ ParamFile=[RunDir '/params.txt'];
 TruthFile=[RunDir '/truth.txt'];
 AllTruth=ReadTruth (TruthFile,DAll);
 
-[D,Obs,AllObs,DAll,Truth]=SelObs(DAll,Obs,Exp,AllTruth);
+if Laterals.UseMean
+    LateralMeanFile=[RunDir '/LateralsMean.txt'];
+    Prior.AllLats=ReadLats(LateralMeanFile,DAll);    
+else
+    Prior.AllLats=nan(size(Obs.h));
+end
+
+[D,Obs,AllObs,DAll,Truth,Prior.Lats]=SelObs(DAll,Obs,Exp,AllTruth,Prior.AllLats);
 
 [Obs] = CalcdA(D,Obs);
 [AllObs] = CalcdA(DAll,AllObs);

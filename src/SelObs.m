@@ -1,4 +1,4 @@
-function [D,Obs,AllObs,DAll,Truth]=SelObs(DAll,Obs,Exp,AllTruth)
+function [D,Obs,AllObs,DAll,Truth,Lats]=SelObs(DAll,Obs,Exp,AllTruth,AllLats)
 
 AllObs=Obs;
 
@@ -34,5 +34,8 @@ Truth.W=AllTruth.W(:,iEst);
 Truth.dAv=reshape(Truth.dA',D.nR*D.nt,1);
 Truth.hv=reshape(Truth.h',D.nR*D.nt,1);
 Truth.Wv=reshape(Truth.W',D.nR*D.nt,1);
+
+Lats.q=AllLats.q(:,iEst(1:end-1));
+Lats.qv=reshape(Lats.q',D.nR*(D.nt-1),1);
 
 return

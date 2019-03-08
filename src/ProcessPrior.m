@@ -101,11 +101,7 @@ f=nan(DAll.nR,N);
 %% 3 chain calculations
 tic
 disp('Processing prior for each reach...')
-for j=1:DAll.nR,
-    
-    if j==11,
-        stop=1;
-    end
+for j=1:DAll.nR
             
     A0u=thetaAllA0(j,1); %the initial value is the minimum 
     nau=thetana(j,1);
