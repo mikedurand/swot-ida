@@ -1,10 +1,11 @@
 clear all
 
-uselib('SWOTQAlg')
+addpath ./src -END
+
 ShowFigs=true;
 RunBjerklie=false;
 RunMetroMan=true;
-Laterals.UseMean=true;
+Laterals.UseMean=false;
 Laterals.Estimate=false;
 
 fid=fopen('RunFile.txt');

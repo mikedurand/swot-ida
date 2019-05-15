@@ -19,7 +19,7 @@ if Laterals.UseMean
     LateralMeanFile=[RunDir '/LateralsMean.txt'];
     Prior.AllLats=ReadLats(LateralMeanFile,DAll);    
 else
-    Prior.AllLats=nan(size(Obs.h));
+    Prior.AllLats.q=zeros(size(Obs.h));
 end
 
 [D,Obs,AllObs,DAll,Truth,Prior.Lats]=SelObs(DAll,Obs,Exp,AllTruth,Prior.AllLats);
