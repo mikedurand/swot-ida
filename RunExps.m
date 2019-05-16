@@ -5,7 +5,7 @@ addpath ./src -END
 ShowFigs=true;
 RunBjerklie=false;
 RunMetroMan=true;
-Laterals.UseMean=false;
+Laterals.UseMean=true;
 Laterals.Estimate=false;
 
 fid=fopen('RunFile.txt');
