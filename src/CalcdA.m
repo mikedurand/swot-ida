@@ -4,8 +4,8 @@ function [Obs] = CalcdA(D,Obs)
 
 
 %Compare DeltaA
-for r=1:D.nR,
-    for t=1:D.nt-1,
+for r=1:D.nR
+    for t=1:D.nt-1
         DeltaAHat(r,t)=(Obs.w(r,t+1)+Obs.w(r,t))/2*(Obs.h(r,t+1)-Obs.h(r,t));
     end
 end

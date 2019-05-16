@@ -8,7 +8,7 @@ N=D.nR*(D.nt-1);
  
 U=zeros(M,N);          
           
- for i=1:D.nR,
+ for i=1:D.nR
      U(D.nt*(i-1)+[1:D.nt],(D.nt-1)*(i-1)+[1:D.nt-1])=u;
  end
 

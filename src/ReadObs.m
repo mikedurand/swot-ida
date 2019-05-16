@@ -10,18 +10,18 @@ fgetl(fid);
 
 Domain.dt=reshape( (diff(Domain.t)'.*86400*ones(1,Domain.nR)),Domain.nR*(Domain.nt-1),1);
 
-for i=1:Domain.nR, %read heights
+for i=1:Domain.nR %read heights
     Obs.h(i,:)=fscanf(fid,'%f',Domain.nt); fscanf(fid,'\n');
 end
 
 fgetl(fid); Obs.h0=fscanf(fid,'%f',Domain.nR)'; fscanf(fid,'\n');
 
 fgetl(fid); 
-for i=1:Domain.nR, %read slopes
+for i=1:Domain.nR %read slopes
     Obs.S(i,:)=fscanf(fid,'%f',Domain.nt)./1E5; fscanf(fid,'\n');    %cm/km -> m/m
 end
 fgetl(fid); 
-for i=1:Domain.nR, 
+for i=1:Domain.nR %read widths 
     Obs.w(i,:)=fscanf(fid,'%f',Domain.nt); fscanf(fid,'\n');
 end
 

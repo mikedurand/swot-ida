@@ -6,24 +6,24 @@ N=nr*(nt-1);
 M=nr*nt;
 Delta=nan(N,M);
 
-for r=1:nr,
+for r=1:nr
     [a,b,c]=GetABC(r,nr,L);            
     
-    for i=1:nt-1,
+    for i=1:nt-1
         t1=i; t2=i+1;
         
         Row=Row+1;
         
         Delta(Row,:)=zeros(M,1);
                 
-        if r==1,%upstream
+        if r==1 %upstream
             Col1=t1;
             Col2=t2;
             Col3=t1+nt;
             Col4=t2+nt;
             Delta(Row,Col1:Col2)=-c/2;
             Delta(Row,Col3:Col4)=b/2;
-        elseif r==nr,
+        elseif r==nr
             Col1=t1+nt*(r-2);
             Col2=t2+nt*(r-2);
             Col3=t1+nt*(r-1);

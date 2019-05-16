@@ -6,9 +6,9 @@ N=nr*(nt-1);
 M=nr*nt;
 B=nan(N,M);
 
-for r=1:nr,    
+for r=1:nr
         
-    for i=1:nt-1,
+    for i=1:nt-1
         Row=Row+1;
         
         B(Row,:)=zeros(M,1);
