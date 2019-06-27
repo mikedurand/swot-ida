@@ -6,7 +6,7 @@ AllObs=Obs;
 %     iEst(i)=find(abs(DAll.t-Exp.tUse(i))<(1*Exp.tStep/2));
 % end
 
-iEst=find(DAll.t>=Exp.tUse(1)&DAll.t<=Exp.tUse(end));
+iEst=find(DAll.t>=Exp.tUse(1)&DAll.t<=Exp.tUse(end)); %note: final term could be tUse(2). -MD
 
 Obs.h=AllObs.h(:,iEst);
 Obs.h0=Obs.h(:,1);

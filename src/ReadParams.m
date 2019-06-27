@@ -15,8 +15,11 @@ else
     Exp.tStep=1; %default to one day
 end
 
-Exp.tUse=(round(tUse1/Exp.tStep):1:round(tUseEnd/Exp.tStep))*Exp.tStep;
-Exp.Est_nt=length(Exp.tUse);
+% Exp.tUse=(round(tUse1/Exp.tStep):1:round(tUseEnd/Exp.tStep))*Exp.tStep;
+% Exp.Est_nt=length(Exp.tUse);
+
+Exp.tUse(1)=tUse1;
+Exp.tUse(2)=tUseEnd;
 
 fclose(fid);
 
