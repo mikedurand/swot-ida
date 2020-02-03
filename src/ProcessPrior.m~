@@ -154,15 +154,15 @@ for j=1:DAll.nR
             pv1=1;
             Qv = mean( 1./nhatu.*(Av).^(5/3).*AllObs.w(j,:).^(-2/3).*sqrt(AllObs.S(j,:)) );
             fv=lognpdf(Qv,muQbar,sigmaQbar);
-            pv1A=lognpdf(Abarv,Prior.Geomorph.logA0_hat,Prior.Geomorph.logA0_sigma);
+            pv1A=
         end
 
-        MetRatio=fv/fu*pv1/pu1*pv1A/pu1A;
+        MetRatio=fv/fu*pv1/pu1;
 
         if MetRatio>u1(j,i)
             na1(j)=na1(j)+1;
             A0u=A0v; Qu=Qv;
-            fu=fv; pu1=pv1; pu1A=pv1A;
+            fu=fv; pu1=pv1;
         end
 
         %na
