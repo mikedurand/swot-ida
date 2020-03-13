@@ -117,8 +117,12 @@ for j=1:DAll.nR
     Au=A0u+AllObs.dA(j,:);
     Abaru=median(Au);
     
+    if Prior.Geomorph.Use
+        pu1A=lognpdf(Abaru,Prior.Geomorph.logA0_hat,Prior.Geomorph.logA0_sigma);
+    else
+        pu1A=1;
+    end
     pu1=1;
-    pu1A=lognpdf(Abaru,Prior.Geomorph.logA0_hat,Prior.Geomorph.logA0_sigma);
     pu2=lognpdf(nau,mun(j),sigman(j));     
     pu3=lognpdf(-x1u,mux1(j),sigmax1(j));     
     
@@ -154,7 +158,11 @@ for j=1:DAll.nR
             pv1=1;
             Qv = mean( 1./nhatu.*(Av).^(5/3).*AllObs.w(j,:).^(-2/3).*sqrt(AllObs.S(j,:)) );
             fv=lognpdf(Qv,muQbar,sigmaQbar);
-            pv1A=lognpdf(Abarv,Prior.Geomorph.logA0_hat,Prior.Geomorph.logA0_sigma);
+            if Prior.Geomorph.Use
+                pv1A=lognpdf(Abarv,Prior.Geomorph.logA0_hat,Prior.Geomorph.logA0_sigma);
+            else
+                pv1A=1;
+            end
         end
 
         MetRatio=fv/fu*pv1/pu1*pv1A/pu1A;
@@ -250,13 +258,13 @@ Prior.stdna=std(thetana(:,iUse),[],2);
 Prior.meanx1=mean(thetax1(:,iUse),2);  %should check these parameters actually fit the posterior...
 Prior.stdx1=std(thetax1(:,iUse),[],2);
 
-for r=1:DAll.nR,
+for r=1:DAll.nR
     nhat = calcnhat(AllObs.w(r,:),AllObs.h(r,:),AllObs.hmin(r),Prior.meanAllA0(r)+AllObs.dA(r,:), ...
         Prior.Wa(r),Prior.Ha(r),c1,Prior.meanx1(r),Prior.meanna(r),nOpt);
     QPrior(r,:)=1./nhat.*(Prior.meanAllA0(r)+AllObs.dA(r,:)).^(5/3).*AllObs.w(r,:).^(-2/3).*sqrt(AllObs.S(r,:)) ;
 end
 
-if ShowFigs,
+if ShowFigs
 
     %check validity of the n parameterization ...
     r=3; %reach to check out.
