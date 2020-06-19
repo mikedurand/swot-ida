@@ -143,7 +143,7 @@ Estimate.QhatUnc.A0x1=2*(Estimate.rho_A0x1*ones(1,D.nt)) .* ...
 % 
 
 %4.4.2) Estimate total Q uncertinty
-Estimate.QhatUnc.Hat=sqrt( Estimate.QhatUnc.na+mean(Estimate.QhatUnc.x1)+mean(Estimate.QhatUnc.w,2)+...
+Estimate.QhatUnc.Hat=sqrt( Estimate.QhatUnc.na+mean(Estimate.QhatUnc.x1,2)+mean(Estimate.QhatUnc.w,2)+...
     mean(Estimate.QhatUnc.A0,2)+mean(Estimate.QhatUnc.dA,2)+mean(Estimate.QhatUnc.S,2)+...
     mean(Estimate.QhatUnc.A0na,2)+mean(Estimate.QhatUnc.nax1,2)+mean(Estimate.QhatUnc.A0x1,2));
 
@@ -154,11 +154,11 @@ Estimate.QhatUnc.HatAll=sqrt( Estimate.QhatUnc.na*ones(1,D.nt)+Estimate.QhatUnc.
 
 %4.4.3) Discharge error budget
 Estimate.QerrVarSum(1:D.nR,1)=Estimate.QhatUnc.na;
-Estimate.QerrVarSum(1:D.nR,1)=mean(Estimate.QhatUnc.x1,2);
-Estimate.QerrVarSum(1:D.nR,2)=mean(Estimate.QhatUnc.A0,2);
-Estimate.QerrVarSum(1:D.nR,3)=mean(Estimate.QhatUnc.dA,2);
-Estimate.QerrVarSum(1:D.nR,4)=mean(Estimate.QhatUnc.w,2);
-Estimate.QerrVarSum(1:D.nR,5)=mean(Estimate.QhatUnc.S,2);
+Estimate.QerrVarSum(1:D.nR,2)=mean(Estimate.QhatUnc.x1,2);
+Estimate.QerrVarSum(1:D.nR,3)=mean(Estimate.QhatUnc.A0,2);
+Estimate.QerrVarSum(1:D.nR,4)=mean(Estimate.QhatUnc.dA,2);
+Estimate.QerrVarSum(1:D.nR,5)=mean(Estimate.QhatUnc.w,2);
+Estimate.QerrVarSum(1:D.nR,6)=mean(Estimate.QhatUnc.S,2);
 
 %5 all estimates
 
